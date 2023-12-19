@@ -9,8 +9,8 @@ class Mahasiswa(db.Model):
   phone = db.Column(db.String(15))
   address = db.Column(db.String(250))
   major = db.Column(db.String(50), nullable=False)
-  dosen_satu = db.Column(db.BigInteger, db.ForeignKey(Dosen.id))
-  dosen_dua = db.Column(db.BigInteger, db.ForeignKey(Dosen.id))
+  dosen_satu = db.Column(db.BigInteger, db.ForeignKey(Dosen.id, ondelete='CASCADE'))
+  dosen_dua = db.Column(db.BigInteger, db.ForeignKey(Dosen.id, ondelete='CASCADE'))
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
