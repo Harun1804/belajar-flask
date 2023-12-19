@@ -13,6 +13,9 @@ def dosen():
     else:
         return DosenController.store()
 
-@app.route('/dosen/<id>', methods=['GET'])
+@app.route('/dosen/<id>', methods=['GET', 'PUT'])
 def dosenShow(id):
-    return DosenController.show(id)
+    if request.method == 'PUT':
+        return DosenController.update(id)
+    else:
+        return DosenController.show(id)

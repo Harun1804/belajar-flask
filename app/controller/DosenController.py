@@ -28,3 +28,14 @@ def store():
     return response.success([], "Dosen has been created")
   except Exception as e:
     print(e)
+
+def update(id):
+  try:
+    nidn = request.form.get('nidn')
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    address = request.form.get('address')
+    DosenService.update(id, nidn, name, phone, address)
+    return response.success([], "Dosen has been updated")
+  except Exception as e:
+    print(e)

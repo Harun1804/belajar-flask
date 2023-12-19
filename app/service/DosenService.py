@@ -24,6 +24,14 @@ def store(nidn, name, phone, address):
   db.session.add(dosen)
   db.session.commit()
 
+def update(id, nidn, name, phone, address):
+  dosen = Dosen.query.filter_by(id = id).first()
+  dosen.nidn = nidn
+  dosen.name = name
+  dosen.phone = phone
+  dosen.address = address
+  db.session.commit()
+
 def formatArray(lists):
   array = []
   for list in lists:
