@@ -39,3 +39,10 @@ def update(id):
     return response.success([], "Dosen has been updated")
   except Exception as e:
     print(e)
+
+def delete(id):
+  try:
+    DosenService.delete(id)
+    return response.success([], "Dosen has been deleted")
+  except Exception as e:
+    print(e)

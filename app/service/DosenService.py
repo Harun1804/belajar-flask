@@ -3,21 +3,15 @@ from app.model.dosen import Dosen
 from app.service.MahasiswaService import findByDosen
 
 def index():
-  try:
-    dosen = Dosen.query.all()
-    data = formatArray(dosen)
-    return data
-  except Exception as e:
-    print(e)
+  dosen = Dosen.query.all()
+  data = formatArray(dosen)
+  return data
 
 def find(id):
-  try:
-    dosen = Dosen.query.filter_by(id = id).first()
-    mahasiswa = findByDosen(id)
-    data = singleTransformWithMahasiswa(dosen, mahasiswa)
-    return data
-  except Exception as e:
-    print(e)
+  dosen = Dosen.query.filter_by(id = id).first()
+  mahasiswa = findByDosen(id)
+  data = singleTransformWithMahasiswa(dosen, mahasiswa)
+  return data
 
 def store(nidn, name, phone, address):
   dosen = Dosen(nidn=nidn, name=name, phone=phone, address=address)
@@ -30,6 +24,14 @@ def update(id, nidn, name, phone, address):
   dosen.name = name
   dosen.phone = phone
   dosen.address = address
+  db.session.commit()
+
+def delete(id):
+  dosen = Dosen.query.filter_by(id = id).first()
+  if not dosen:
+    return False
+
+  db.session.delete(dosen)
   db.session.commit()
 
 def formatArray(lists):
