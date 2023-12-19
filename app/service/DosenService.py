@@ -1,3 +1,4 @@
+from app import db
 from app.model.dosen import Dosen
 from app.service.MahasiswaService import findByDosen
 
@@ -17,6 +18,11 @@ def find(id):
     return data
   except Exception as e:
     print(e)
+
+def store(nidn, name, phone, address):
+  dosen = Dosen(nidn=nidn, name=name, phone=phone, address=address)
+  db.session.add(dosen)
+  db.session.commit()
 
 def formatArray(lists):
   array = []

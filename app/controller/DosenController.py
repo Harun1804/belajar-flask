@@ -17,3 +17,14 @@ def show(id):
     return response.success(data, "success")
   except Exception as e:
     print(e)
+
+def store():
+  try:
+    nidn = request.form.get('nidn')
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    address = request.form.get('address')
+    DosenService.store(nidn, name, phone, address)
+    return response.success([], "Dosen has been created")
+  except Exception as e:
+    print(e)

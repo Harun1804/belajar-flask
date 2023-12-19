@@ -1,13 +1,17 @@
 from app import app
+from flask import request
 from app.controller import DosenController
 
 @app.route('/')
 def index():
     return "Hello, World!"
 
-@app.route('/dosen', methods=['GET'])
+@app.route('/dosen', methods=['GET', 'POST'])
 def dosen():
-    return DosenController.index()
+    if request.method == 'GET':
+        return DosenController.index()
+    else:
+        return DosenController.store()
 
 @app.route('/dosen/<id>', methods=['GET'])
 def dosenShow(id):
