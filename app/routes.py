@@ -1,6 +1,6 @@
 from app import app
 from flask import request
-from app.controller import DosenController
+from app.controller import DosenController, UserController
 
 @app.route('/')
 def index():
@@ -21,3 +21,7 @@ def dosenShow(id):
         return DosenController.show(id)
     else:
         return DosenController.delete(id)
+
+@app.route('/users', methods=['POST'])
+def users():
+    return UserController.store()
