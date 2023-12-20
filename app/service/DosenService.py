@@ -1,10 +1,11 @@
 from app import db
 from app.model.dosen import Dosen
 from app.service.MahasiswaService import findByDosen
+from app.util import formatter
 
 def index():
   dosen = Dosen.query.all()
-  data = formatArray(dosen)
+  data = formatter.formatArray(dosen, singleTransform)
   return data
 
 def find(id):
@@ -33,13 +34,6 @@ def delete(id):
 
   db.session.delete(dosen)
   db.session.commit()
-
-def formatArray(lists):
-  array = []
-  for list in lists:
-    array.append(singleTransform(list))
-  
-  return array
 
 def singleTransform(data):
   data = {

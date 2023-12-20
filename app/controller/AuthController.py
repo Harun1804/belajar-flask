@@ -1,15 +1,15 @@
 from app.util import response
 from flask import request
-from app.service import UserService
+from app.service import AuthService
 
-def store():
+def login():
   try:
-    name = request.form.get('name')
     email = request.form.get('email')
     password = request.form.get('password')
-    level = request.form.get('level')
-    UserService.store(name, email, password, level)
-    return response.success([], "User has been created")
+    data = AuthService.login(email, password)
+    if not data['status']:
+      return response.badRequest([], data['message'])
+    return response.success(data, "Successfully login")
   except Exception as e:
     return {
       'message': str(e),

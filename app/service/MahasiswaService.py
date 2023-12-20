@@ -6,7 +6,10 @@ def index():
     data = formatArray(mahasiswa)
     return data
   except Exception as e:
-    print(e)
+        return {
+      'message': str(e),
+      'status': False,
+    }
 
 def findByDosen(dosen_id):
   try:
@@ -14,7 +17,10 @@ def findByDosen(dosen_id):
     data = formatArray(mahasiswa)
     return data
   except Exception as e:
-    print(e)
+        return {
+      'message': str(e),
+      'status': False,
+    }
 
 def formatArray(lists):
   array = []

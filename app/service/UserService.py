@@ -6,3 +6,13 @@ def store(name, email, password, level = 1):
   user.setPassword(password)
   db.session.add(user)
   db.session.commit()
+
+def singleTransform(list):
+  data = {
+    'id': list.id,
+    'name': list.name,
+    'email': list.email,
+    'level': list.level
+  }
+
+  return data
