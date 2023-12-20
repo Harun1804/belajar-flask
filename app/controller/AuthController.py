@@ -15,13 +15,3 @@ def login():
       'message': str(e),
       'status': False,
     }
-
-def userLogin():
-  try:
-    data = AuthService.userLogin()
-    return response.success(data, "Get User Login Profile")
-  except Exception as e:
-    return {
-      'message': str(e),
-      'status': False,
-    }
