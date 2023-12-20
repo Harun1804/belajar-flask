@@ -1,7 +1,7 @@
 from app import db
 from app.model.user import User
 from app.service.UserService import singleTransform
-from flask_jwt_extended import *
+from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity
 import datetime
 
 def login(email, password):
@@ -27,6 +27,7 @@ def login(email, password):
     refresh_token = create_refresh_token(data, expires_delta=expiores_refresh)
 
     return {
+      'status' :True,
       'access_token': access_token,
       'refresh_token': refresh_token,
       'user': data
@@ -36,3 +37,6 @@ def login(email, password):
       'message': str(e),
       'status': False,
     }
+
+def userLogin():
+  return get_jwt_identity()

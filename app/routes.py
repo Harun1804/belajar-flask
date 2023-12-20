@@ -1,6 +1,7 @@
 from app import app
 from flask import request
 from app.controller import DosenController, UserController, AuthController
+from flask_jwt_extended import jwt_required
 
 @app.route('/')
 def index():
@@ -25,6 +26,11 @@ def dosenShow(id):
 @app.route('/users', methods=['POST'])
 def users():
     return UserController.store()
+
+@app.route('/users/login', methods=['GET'])
+@jwt_required()
+def userLogin():
+    return AuthController.userLogin()
 
 @app.route('/auth/login', methods=['POST'])
 def login():
