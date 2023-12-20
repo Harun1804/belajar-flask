@@ -1,6 +1,6 @@
 from app import app
 from flask import request
-from app.controller import DosenController, UserController, AuthController, ProfileController
+from app.controller import DosenController, UserController, AuthController, ProfileController, MediaController
 from flask_jwt_extended import jwt_required
 
 @app.route('/')
@@ -30,6 +30,10 @@ def users():
 @app.route('/auth/login', methods=['POST'])
 def login():
     return AuthController.login()
+
+@app.route('/media', methods=['POST'])
+def media():
+    return MediaController.store()
 
 @app.route('/profile', methods=['GET'])
 @jwt_required()

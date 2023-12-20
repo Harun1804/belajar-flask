@@ -11,5 +11,5 @@ migrate = Migrate(app, db) # migration engine instance
 
 jwt = JWTManager(app)
 
-from app.model import user, dosen, mahasiswa
+from app.model import user, dosen, mahasiswa, gambar
 from app import routes
