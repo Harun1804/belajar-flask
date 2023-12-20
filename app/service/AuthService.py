@@ -4,9 +4,9 @@ from app.service.UserService import singleTransform
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity
 import datetime
 
-def login(email, password):
+def login(data):
   try:
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=data['email']).first()
 
     if not user:
       return {
@@ -14,7 +14,7 @@ def login(email, password):
         'status': False
       }
 
-    if not user.checkPassword(password):
+    if not user.checkPassword(data['password']):
       return {
         'message': 'Password is wrong',
         'status': False
