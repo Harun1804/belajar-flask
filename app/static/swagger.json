@@ -1,0 +1,215 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Belajar Flask",
+    "description": "Belajar Flask Menggunakan Swagger",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "tags": [{
+    "name": "Dosen Api",
+    "description": "Dosen Api"
+  }],
+
+  "servers": [{
+    "url": "/"
+  }],
+
+  "components": {
+    "schemas": {
+      "Dosen": {
+        "type": "object",
+        "properties": {
+          "nidn": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "Id": {
+        "type": "integer",
+        "properties": {
+          "name": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+
+  "paths": {
+    "/dosen": {
+      "get": {
+        "tags": [
+          "Dosen"
+        ],
+        "summary": "Get All dosen",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          }
+        }
+      },
+
+      "post": {
+        "tags": [
+          "Dosen"
+        ],
+        "summary": "Store Dosen",
+        "requestBody": {
+          "description": "Add New Dosen To Database",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Dosen"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          }
+        }
+      }
+    },
+
+    "/dosen/{id}": {
+      "get": {
+        "tags": [
+          "Dosen"
+        ],
+        "summary": "Get dosen",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "todo id get detail",
+          "required": true,
+          "type": "integer",
+          "schema": {
+            "$ref": "#/components/schemas/Id"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          }
+        }
+      },
+
+      "put": {
+        "tags": [
+          "Dosen"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "dosen id to update",
+          "required": true,
+          "type": "integer",
+          "schema": {
+            "$ref": "#/components/schemas/Id"
+          }
+        }],
+        "summary": "Update Dosen",
+        "requestBody": {
+          "description": "Update Existing dosen On Database",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Dosen"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          }
+        }
+      },
+
+      "delete": {
+        "tags": [
+          "Dosen"
+        ],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "dosen id to delete",
+          "required": true,
+          "type": "integer",
+          "schema": {
+            "$ref": "#/components/schemas/Id"
+          }
+        }],
+        "summary": "Delete dosen",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/Dosen"
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
